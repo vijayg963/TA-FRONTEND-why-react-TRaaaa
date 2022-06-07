@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Movie Watch list</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Movie Watch List</h1>
+        <input type="text" placeholder="Enter the movie name" />
+        <ul class="movie-list">
+          <!-- <div class="flex">
+            <input type="checkbox" name="" id="" />
+            <li>hello</li>
+            <span>❌</span>
+          </div> -->
+        </ul>
+      </div>
+      <script
+        crossorigin
+        src="https://unpkg.com/react@17/umd/react.development.js"
+      ></script>
+      <script
+        crossorigin
+        src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      ></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <script type="text/babel">
+        // JSX code goes here
+        let input = document.querySelector('input[type="text"]');
+        let rootElm = document.querySelector('.movie-list');
+
+        let allMovies = [
+          {
+            name: 'Inception',
+            watched: false,
+          },
+          {
+            name: 'Rush',
+            watched: false,
+          },
+        ];
+
+        input.addEventListener('keydown', (event) => {
+          if (event.keyCode === 13) {
+            allMovies.push({
+              name: event.target.value,
+              watched: false,
+            });
+            event.target.value = '';
+            createMovieUI();
+          }
+        });
+
+        function deleteMovie(id) {
+          allMovies.splice(id, 1);
+          createMovieUI();
+        }
+
+        function handleChange(event) {
+          let id = event.target.id;
+          allMovies[id].watched = !allMovies[id].watched;
+        }
+
+        function createMovieUI(data = allMovies) {
+          let movieUI = data.map((movie, i) => {
+            // let li = React.createElement(
+            //   'li',
+            //   { className: 'flex' },
+            //   React.createElement('input', {
+            //     type: 'checkbox',
+            //     id: i,
+            //     checked: movie.watched,
+            //   }),
+            //   React.createElement('label', { for: i }, movie.name),
+            //   React.createElement('span', { 'data-id': i }, '❌')
+            // );
+
+            return (
+              <li>
+                <input type='checkbox' data-id={i} checked={movie.watched} />
+                <label for='i'>{movie.name}</label>
+                <span data-id={i}>❌</span>
+              </li>
+            );
+          });
+          ReactDOM.render(movieUI, rootElm);
+        }
+
+        document.querySelector('.movie-list').addEventListener('click', (e) => {
+          const { tagName } = e.target;
+          const { id } = e.target.dataset;
+          if (tagName === 'SPAN') {
+            deleteMovie(id);
+          }
+        });
+
+        createMovieUI();
+      </script>
+      <script src="./script.js"></script>
+    </main>
+  </body>
+</html>
