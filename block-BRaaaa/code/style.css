@@ -1,0 +1,50 @@
+body {
+  font-size: 16px;
+  padding: 3rem;
+  text-align: center;
+  background: linear-gradient(to right, rgb(250, 167, 13), rgb(243, 243, 131));
+}
+
+.container {
+  margin: 0 auto;
+  place-self: center;
+  background-color: skyblue;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+input {
+  width: fit-content;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 3px;
+  border: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+label {
+  margin-left: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0.1rem;
+}
+li {
+  list-style: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.4rem;
+}
+
+span {
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
